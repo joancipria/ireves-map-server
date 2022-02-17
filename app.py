@@ -33,10 +33,10 @@ def isochrones():
 
     headers = {
         'Accept': 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8',
-        'Authorization': '5b3ce3597851110001cf6248478bc3389a694195a33773d711ee4ebf', #Private
+        #'Authorization': '5b3ce3597851110001cf6248478bc3389a694195a33773d711ee4ebf', #Private
         'Content-Type': 'application/json; charset=utf-8'
     }
-    call = requests.post('https://api.openrouteservice.org/v2/isochrones/driving-car', json=body, headers=headers)
+    call = requests.post('http://localhost:8080/v2/isochrones/driving-car', json=body, headers=headers)
     return call.json()
 
 @app.route('/population', methods=['POST', 'GET'])
