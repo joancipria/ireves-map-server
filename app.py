@@ -13,6 +13,18 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+@app.route('/health', methods=['POST', 'GET'])
+@cross_origin()
+def health():
+    """Comprueba status"""
+
+    headers = {
+        'Accept': 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8',
+        'Content-Type': 'application/json; charset=utf-8'
+    }
+    call = requests.post('http://localhost:8080/v2/health/', headers=headers)
+    return call.json()
+
 @app.route('/isochrones', methods=['POST', 'GET'])
 @cross_origin()
 def isochrones():
