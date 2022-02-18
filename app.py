@@ -13,16 +13,16 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.route('/health', methods=['POST', 'GET'])
+@app.route('/health/openroute', methods=['POST', 'GET'])
 @cross_origin()
 def health():
-    """Comprueba status"""
+    """Comprueba status openroute"""
 
     headers = {
         'Accept': 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8',
         'Content-Type': 'application/json; charset=utf-8'
     }
-    call = requests.post('http://localhost:8080/v2/health/', headers=headers)
+    call = requests.get('http://localhost:8080/ors/v2/health/', headers=headers)
     return call.json()
 
 @app.route('/isochrones', methods=['POST', 'GET'])
@@ -45,10 +45,9 @@ def isochrones():
 
     headers = {
         'Accept': 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8',
-        #'Authorization': '5b3ce3597851110001cf6248478bc3389a694195a33773d711ee4ebf', #Private
         'Content-Type': 'application/json; charset=utf-8'
     }
-    call = requests.post('http://localhost:8080/v2/isochrones/driving-car', json=body, headers=headers)
+    call = requests.post('http://localhost:8080/ors/v2/isochrones/driving-car', json=body, headers=headers)
     return call.json()
 
 @app.route('/population', methods=['POST', 'GET'])
