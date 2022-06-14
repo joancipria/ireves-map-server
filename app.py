@@ -61,6 +61,6 @@ def population():
 
 @app.route('/model/static/', methods=['POST', 'GET'])
 @cross_origin()
-def population():
+def staticModel():
     #modelVersion = request.args.get('version')
     return staticModelV1
