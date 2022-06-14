@@ -3,6 +3,8 @@ from flask import Flask
 from flask import request
 from flask_cors import CORS, cross_origin
 import json
+staticModelV1file = open('./models/static/v1.json')
+staticModelV1 = json.load(staticModelV1file)
 import requests
 
 from pop import *
@@ -56,3 +58,9 @@ def population():
     polygon = request.args.get('polygon')
     population = calcPop(polygon)
     return population
+
+@app.route('/model/static/', methods=['POST', 'GET'])
+@cross_origin()
+def population():
+    #modelVersion = request.args.get('version')
+    return staticModelV1
