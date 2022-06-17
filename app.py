@@ -6,7 +6,7 @@ import requests
 from markupsafe import escape
 
 # Server imports
-from population import *
+from population import calcPop
 from static_models import *
 
 # Create server
