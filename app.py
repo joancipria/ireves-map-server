@@ -4,6 +4,7 @@ from flask import request
 from flask_cors import CORS, cross_origin
 import requests
 from markupsafe import escape
+import json
 
 # Server imports
 from population import calcPop
