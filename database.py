@@ -1,7 +1,7 @@
 import sqlite3
 import json
 
-con = sqlite3.connect('./data/ireves.db')
+con = sqlite3.connect('./data/ireves.db', check_same_thread=False)
 cur = con.cursor()
 
 
