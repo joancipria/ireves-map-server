@@ -9,7 +9,7 @@ import json
 # Server imports
 from population import calcPop
 from static_models import *
-from database import get_all_regions
+from database import get_all_regions, get_region_bounds
 
 # Create server
 app = Flask(__name__)
@@ -84,3 +84,14 @@ Returns all regions data
 def getRegions():
     regions = get_all_regions()
     return regions
+
+"""
+/regions/bounds/:region
+Returns regions bounds
+"""
+@app.route('/regions/bounds', methods=['POST', 'GET'])
+@cross_origin()
+def getRegionBounds():
+    region = request.args.get('region')
+    bounds = get_region_bounds(region)
+    return bounds
