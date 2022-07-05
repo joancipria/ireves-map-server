@@ -9,7 +9,6 @@ def get_all_regions():
     cur.execute('SELECT * FROM regions')
     row_headers = [x[0]
                    for x in cur.description]  # this will extract row headers
-    con.close()
     return result_to_json(cur.fetchall(), row_headers)
 
 
@@ -18,14 +17,12 @@ def get_region_by_id(region_id):
                 {"id": region_id})
     row_headers = [x[0]
                    for x in cur.description]  # this will extract row headers
-    con.close()
     return result_to_json(cur.fetchall(), row_headers)
 
 
 def get_region_pop(region_id):
     cur.execute('SELECT population FROM regions WHERE regions.id = :id', {
                 "id": region_id})
-    con.close()
     return cur.fetchone()[0]
 
 
