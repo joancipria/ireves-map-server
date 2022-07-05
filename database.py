@@ -27,10 +27,11 @@ def get_region_pop(region_id):
 
 
 def get_region_bounds(region_id):
+    region_id = int(region_id)
     cur.execute('SELECT * FROM regions WHERE regions.id = :id', {
                 "id": region_id})
     if  cur.fetchone() is None:
-        return 0
+        return "Not found"
     else:
         boundsFile = open('./data/region_bounds/%i.json'%region_id)
         bounds = json.load(boundsFile)
