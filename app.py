@@ -9,6 +9,7 @@ import json
 # Server imports
 from population import calcPop
 from static_models import *
+from database import get_all_regions
 
 # Create server
 app = Flask(__name__)
@@ -73,3 +74,13 @@ Returns the specified (:version) static model in JSON formart
 def staticModel():
     #modelVersion = request.args.get('version')
     return staticModelV1
+
+"""
+/regions/
+Returns all regions data
+"""
+@app.route('/regions', methods=['POST', 'GET'])
+@cross_origin()
+def getRegions():
+    regions = get_all_regions()
+    return regions
